@@ -101,7 +101,7 @@ async (req, res) => {
       return res.status(400).json({
         message: "Incorrect Password !"
       });
-res.redirect('/register')
+res.redirect('/index')
    
   } catch (e) {
     console.error(e);
