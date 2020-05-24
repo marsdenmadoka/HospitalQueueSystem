@@ -41,7 +41,7 @@ async (req, res) => {
         password
     } = req.body;
     try {
-        let user = await User.findOne({
+        let user = await db.collection('details').findOne({
             email
         });
         if (user) {
