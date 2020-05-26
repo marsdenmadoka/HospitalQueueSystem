@@ -47,8 +47,7 @@ data='';
 	// 	if(err) res.json(err);
 	// 	else    res.render('index', {users: docs});
 	// });
-
-
+  // 
 
 //   InsertRecord.find({}, function (err, records) {
 //     if (err) {
