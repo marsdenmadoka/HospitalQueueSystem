@@ -7,7 +7,7 @@ const bcrypt = require('bcrypt');//hashing our password
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var useRouter=require('./models/User')
+var useRouter=require('./models/User');
 
 var app = express();
 
