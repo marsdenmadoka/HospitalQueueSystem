@@ -55,14 +55,15 @@
                     <td><%=item.EnteryNo%></td>
                     <td><%=item.gender%></td>
                     <td><%=item.subject%></td>
-                    <td> <a href="javascript:void(0)",data-item-id='<%=item._id%>' class="editlink"  onclick='return confirm("You are going to delete this record. Continue?")' >edit</a> </td> 
-                        
+                    <!-- <td> <a href="javascript:void(0)",data-item-id='<%=item._id%>' class="editlink"  onclick='return confirm("You are going to delete this record. Continue?")' >edit</a> </td>  -->
+
+                    <td> <a href="/users/message", onclick='return confirm("You are going to delete this record. Continue?")' >edit</a> </td>  
+
+                    <!-- <td> <a href="/delete?id=<%=item._id%>", onclick='return confirm("You are going to delete this record. Continue?")' >edit</a> </td>   -->
 
                     <!-- a(href='/delete?id=#{item["_id"]}', onclick='return confirm("You are going to delete this record. Continue?")') Delete -->
 
-                    <!-- <td> <a href="Edit"><%=item._id%> </a> </td> -->
-
-                    <!-- a.editlink(href='javascript:void(0)',data-id<%=item._id%>) -->
+        
                    
                 </tr>
             </tbody>

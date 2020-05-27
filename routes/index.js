@@ -33,6 +33,7 @@ router.get('/index', function(req, res, next) {
 
 
 router.get('/patientdetails',function(req,res,next){
+  //fetching data to from db to display iy in our table doctors.ejs
 data='';
 
   db.collection("patientdetails").find({}).toArray(function(err,docs){
@@ -42,19 +43,5 @@ data='';
       res.render('doctors',{data:docs})
     }
   })
-
-  // user.find({}, function(err, docs){
-	// 	if(err) res.json(err);
-	// 	else    res.render('index', {users: docs});
-	// });
-  // 
-
-//   InsertRecord.find({}, function (err, records) {
-//     if (err) {
-//         console.log(err);
-//     } else {
-//         res.render("doctors",{users:records });
-//     }
-// })
 });
 module.exports = router;

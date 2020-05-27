@@ -10,6 +10,17 @@ require('../models/User');
 var User = mongoose.model('User');/*fetching the schema from model*/
 var InsertRecord=mongoose.model('InsertRecord')
 
+/*message Api*/
+const Nexmo = require('nexmo');
+
+const nexmo = new Nexmo({
+  apiKey:'42f310a6',
+  apiSecret:'etZ9aj6vZQbV5myp'
+});
+
+/*message Api*/
+
+
 mongoose.connect('mongodb://localhost:27017/myqueue'); 
 var db=mongoose.connection; 
 db.on('error', console.log.bind(console, "connection error")); 
@@ -170,40 +181,79 @@ res.status(500).send("Error in Saving");
 }
 );
 
-//   var fname=req.body.firstname
-//   var sname= req.body.secondname
-//   var EntNo=req.body.EnteryNo
-//   var Dob=req.body.Dateofbirth
-//  var email= req.body.txtEmail
-//   var phone=req.body.txtPhone
-//   var sub=req.body.subject
+// const config = {
+//   number:'254703674938'
+// }
 
-//   try {
-// var userdetails =new InsertRecord({
-//   fname,
-//   sname,
-//   EntNo,
-//   Dob,
-//   email,
-//   phone,
-//   sub
-// });
+router.get('/message',function(res,req){ 
+  const from = '254703674938';
+  const to = '254703674695';
+  const text = 'A text message sent using the Nexmo SMS API'
+  
+  nexmo.message.sendSms(from, to, text, (err, responseData) => {
+      if (err) {
+          console.log(err);
+      } else {
+          if(responseData.messages[0]['status'] === "0") {
+              console.log("Message sent successfully.");
+          } else {
+              console.log(`Message failed with error: ${responseData.messages[0]['error-text']}`);
+          }
+      }
+  })
 
-// db.collection('patientdetails').insertOne(userdetails,function(err, collection){ 
-//   if (err) throw err; 
-// console.log("datasved");  
-// }); 
-// res.redirect('/index');
-// } catch (e) {
-//     console.error(e);
-//     res.status(500).json({
-//       message: "Server Error"
-//     });
-//   }
+})
 
-// })
 
+
+
+
+
+
+
+
+router.get('/delete', function(req, res, next) {
+ //will use this to the href/delete in our doctors.ejsfiles
+  var id = req.query.id;
+ 
+  MongoClient.connect(dburl, function(err, db) {
+    if(err) { throw err;  }
+    db.collection('products', function(err, products) {
+      products.deleteOne({_id: new mongodb.ObjectID(id)});
+      if (err){
+  
+       throw err;
+   
+      }else{
+    
+         db.close();
+          res.redirect('/');
+    
+       }
+    });
+  });
+});
+
+router.post('/edit', function(req, res, next){ 
+  MongoClient.connect(dburl, function(err, db) {
+    if(err) { throw err; } 
+    
+    var collection   = db.collection('products'); 
+    var product_name = req.body.product_name;
+    var price               = req.body.price;
+    var category     = req.body.category;
+    collection.update({'_id':new mongodb.ObjectID(req.body.id)}, 
+    { $set: {'product_name': product_name, 'price': price, 'category': category } }, function(err, result) { 
+      if(err) { throw err; } 
       
+      db.close(); 
+      
+      res.redirect('/'); 
+    }); 
+  });
+});
+
+
   
 
 module.exports = router;
