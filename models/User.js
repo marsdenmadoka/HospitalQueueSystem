@@ -62,3 +62,17 @@ subject: {
 var InsertRecord = mongoose.model('InsertRecord', userSchema);
 module.exports = InsertRecord;
 
+
+var DoctorSchema = new mongoose.Schema({
+  Docname: {
+    type: String,
+  
+  },
+  Docpassword: {
+    type: String,
+    
+  }
+});
+
+var DoctorUser = mongoose.model('DoctorUser', DoctorSchema);
+module.exports = DoctorUser;

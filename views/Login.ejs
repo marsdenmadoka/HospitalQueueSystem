@@ -6,7 +6,20 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         
 		<style>
+			body {
+    background-color: #f0e68c;
+}
+.heading h1{
+	text-align: center;
+			color: #4e08f1;
+			font-style: italic;
+            font-weight: bold;
+			font-size: 24px;
+			padding: 20px 0 20px 0;
+
+}
 		.login-form {
+
 			width: 300px;
 			margin: 0 auto;
 			font-family: Tahoma, Geneva, sans-serif;
@@ -14,18 +27,28 @@
 		}
 		.login-form h1 {
 			text-align: center;
-			color: #4d4d4d;
+			color: rgb(226, 55, 12);
+			text-decoration: underline; 
+			font-style: italic;
             font-weight: bold;
-			font-size: 34px;
-			padding: 20px 0 20px 0;
+			font-size: 18px;
+			margin-bottom: 2px;
 		}
 		.login-form input[type="password"],
 		.login-form input[type="email"] {
 			width: 100%;
 			padding: 15px;
+			color: green;
 			border: 1px solid #dddddd;
 			margin-bottom: 15px;
 			box-sizing:border-box;
+		}
+
+		.login-form label[for="email"],
+		.login-form label[for="password"]{
+			color: rgb(226, 55, 12);
+			font-size: 20px;
+
 		}
 		.login-form input[type="submit"] {
 			width: 100%;
@@ -42,14 +65,19 @@
        .login-form p {
         width: 300px;
         text-align:justify;
+		text-decoration: underline;
         background-color: #f0e68c;
         margin-top: 20px;
         }
 		</style>
 	</head>
 	<body>
+
+		<div class="heading">
+			<h1>Welcome to Uchumi Hospital Queue System</h1>
+		</div>
 		<div class="login-form" col-md-6>
-            <h1>Login Here!</h1>
+            <h1>Receiptionist Login !</h1>
             <form action="/users/RecieveLogin" method="POST">
                 
         <label for="email">E-mail</label>
@@ -63,9 +91,17 @@
         <!-- <input type="submit"> -->
 </form>
 <div >
-<p><a href="/register">Have no account! Register here!</a></p>
+<p><a href="/register">Receiptionist Register Account!</a></p>
 </div>
-    </div>
+
+<div >
+	<p><a href="/DoctorLog">Click here to Login As Doctor!</a></p>
+</div>
+	</div>
+	
+
+
+	
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>

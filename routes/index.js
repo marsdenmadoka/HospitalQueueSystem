@@ -18,6 +18,8 @@ db.once('open', function(callback){
 
 
 /* GET home page. */
+
+
 router.get('/', function(req, res, next) {
   res.render('Login', { title: 'Express' });
 });
@@ -44,4 +46,9 @@ data='';
     }
   })
 });
+
+router.get('/DoctorLog',function(req,res,next){
+  res.render('DoctorsLogin',{title:"Admin"})
+})
+
 module.exports = router;

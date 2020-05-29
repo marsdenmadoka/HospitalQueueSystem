@@ -3,12 +3,22 @@ var router = express.Router();
 var bodyParser=require("body-parser"); 
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
+var flash = require('connect-flash');
 const { check, validationResult} = require("express-validator/check");
+const africastalking = require('africastalking');
 
+// Init africastalking
+const AfricasTalking = new africastalking({
+  apiKey:'d8cc5bdfb8562bd6c69fdcf38a46b5c5e7218047a6d7039a306588aa932d7b3d',
+  username: 'sandbox'
+  }, {debug: true});
+
+  const sms = AfricasTalking.SMS;
 
 require('../models/User');
 var User = mongoose.model('User');/*fetching the schema from model*/
 var InsertRecord=mongoose.model('InsertRecord')
+var DoctorUser = mongoose.model('DoctorUser');
 
 /*message Api*/
 const Nexmo = require('nexmo');
@@ -18,7 +28,6 @@ const nexmo = new Nexmo({
   apiSecret:'etZ9aj6vZQbV5myp'
 });
 
-/*message Api*/
 
 
 mongoose.connect('mongodb://localhost:27017/myqueue'); 
@@ -34,8 +43,6 @@ app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ 
     extended: true
 })); 
-
-
 
   /*recieving Register and processing it */
   router.post('/RecieveRegister',
@@ -97,7 +104,7 @@ async (req, res) => {
 
 
 
-/*reciving login andprocessing it */
+/*reciving login and processing it */
 router.post('/RecieveLogin',
 async (req, res) => {
   const errors = validationResult(req);
@@ -185,6 +192,8 @@ res.status(500).send("Error in Saving");
 //   number:'254703674938'
 // }
 
+
+
 router.get('/message',function(res,req){ 
   const from = '254703674938';
   const to = '254703674695';
@@ -203,6 +212,84 @@ router.get('/message',function(res,req){
   })
 
 })
+
+/**creating a doctor*/
+
+// var Docname='admin';
+// var Docpassword='admin';
+var numSaltRounds = 10;
+
+var doctor=new DoctorUser({
+  Docname: 'admin',
+  Docpassword: 'admin'
+  
+});
+// bcrypt.genSalt(numSaltRounds, function(err, salt) {
+//   bcrypt.hash(doctor.Docpassword, salt, function(err, hash) {
+    
+
+//   });
+// })
+      db.collection('doctors').insertOne(doctor,function(err, collection){ 
+                 if (err) throw err; 
+           console.log("doctor created successfull");  
+          }); 
+
+//doctor login
+router.post('/DoctorLogin',
+async (req, res) => {
+  const errors = validationResult(req);
+
+  if (!errors.isEmpty()) {
+    return res.status(400).json({
+      errors: errors.array()
+      
+    });
+    
+  }
+
+  const { name, password } = req.body;
+  try {
+    let user = await db.collection('doctors').findOne({
+      name
+    });
+    if (!user)
+      return res.status(400).json({
+        message: "User Not Exist"
+      });
+
+      let pass = await db.collection('doctors').findOne({
+        password
+      });
+   if(!pass)
+   return res.status(400).json({
+     message:"incorrect password"
+   })
+   
+res.redirect('/patientdetails')
+   
+  } catch (e) {
+    console.error(e);
+    res.status(500).json({
+      message: "Server Error"+e
+    });
+  }
+}
+);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

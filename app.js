@@ -3,6 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var flash = require('connect-flash');
 const bcrypt = require('bcrypt');//hashing our password
 
 var indexRouter = require('./routes/index');
@@ -19,6 +20,7 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(flash());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
