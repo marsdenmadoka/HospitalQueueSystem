@@ -34,6 +34,10 @@ router.get('/index', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
+router.get('/home',function(req,res,next){
+  res.render('homepage',{title:"home" });
+});
+
 
 router.get('/patientdetails',function(req,res,next){
   //fetching data to from db to display iy in our table doctors.ejs   InsertRecord
@@ -48,41 +52,12 @@ data='';
   })
 });
 
-// router.get('/patientdetails',async (req, res) => {
-
-// data=' ';
-// return new Promise(function(resolve, reject) {
-//   db.collection("patientdetails").find({}).toArray(function(err,docs){
-
-//     if(err){
-//      return reject(err)
-//     }else{
-//     return resolve(res.render('doctors',{data:docs}))
-//     // res.render('doctors',{data:docs})
-//     }
-//    })
-  
-// })
- 
-// }
-// );
-
-
-
-
-
-
-
-
-
-
-
-
-
 router.get('/DoctorLog',function(req,res,next){
 
   res.render('DoctorsLogin',{title:"Admin"})
   
 })
+
+
 
 module.exports = router;

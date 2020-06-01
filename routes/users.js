@@ -160,21 +160,6 @@ async (req, res) => {
   var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
   var ArrivalTime = date+' '+time;
 
-
-  //var today = new Date();
-  //var ArrivalTime = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-
-  //var ArrivalTime = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
-
-
-//  let Arrival=Date.now();
-//   let date_ob = new Date(Arrival);
-//   let time=date_ob.getTime();
-//   let date = date_ob.getDate();
-//   let month = date_ob.getMonth() + 1;
-//   let year = date_ob.getFullYear();
-// let  ArrivalTime =year + "-" + month + "-" + date + time
-
   const {
       firstname,
       secondname,

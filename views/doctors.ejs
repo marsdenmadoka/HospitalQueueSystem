@@ -1,7 +1,14 @@
 <html>
     <head>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+        <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous"> -->
 
+        <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"> -->
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
             <style>
 
               table {
@@ -18,15 +25,111 @@
                     overflow-x: auto;
                 }
                 caption {
-		caption-side:top;
+        caption-side:top;
+        text-align: center;
+        text-decoration: underline;
+        font-weight: bold;
+        font-size: 26px;
+        color: darkgreen;
     }
     tbody tr:nth-child(odd) {
     background-color: #f2f2f2;
 }
+
+.column {
+  float: left;
+  width: 30%;
+  padding: 15 10px;
+}
+
+/* Remove extra left and right margins, due to padding in columns */
+.row {margin: 10 -5px;}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Style the counter cards */
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* this adds the "card" effect */
+  padding: 16px;
+  text-align: center;
+  background-color: #f1f1f1;
+}
+
+/* Responsive columns - one column layout (vertical) on small screens */
+@media screen and (max-width: 600px) {
+  .column {
+    width: 100%;
+    display: block;
+    margin-bottom: 20px;
+  }
+}
+
+
+
        </style>
     </head>
 <body>
 
+    
+    <div class="row">
+
+        <div class="column">
+              <div class="card  text-white bg-danger mb-3">
+              <h5 class="card-title">WAITING PATIENTS</h5>
+              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eu sem tempor, varius quam at.</p>
+              </div>
+        </div>
+
+        <div class="column">
+            <div class="card text-white bg-primary mb-3">
+            <h5 class="card-title">ATTENDED PATIENT</h5>
+            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eu sem tempor, varius quam at.</p>
+             </div>
+       </div>
+
+        <div class="column">
+                <div class="card text-white bg-secondary mb-3">
+                    <h5 class="card-title">TOTAL PATIENTS</h5>
+                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eu sem tempor, varius quam at.</p>
+                </div>
+       </div>
+
+      </div> 
+
+
+
+<!-- <div class="col-md-6">
+    <div class="bs-example">
+        <div class="card text-white bg-primary mb-3" style="width: 20rem;">
+            <div class="card-body">
+                <h5 class="card-title">Primary card title</h5>
+                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eu sem tempor, varius quam at.</p>
+            </div>
+        </div>
+
+        <div class="card text-white bg-secondary mb-3" style="width: 20rem;">
+            <div class="card-body">
+                <h5 class="card-title">Secondary card title</h5>
+                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eu sem tempor, varius quam at.</p>
+            </div>
+        </div>
+        
+        <div class="card text-white bg-success mb-3" style="width: 20rem;">
+            <div class="card-body">
+                <h5 class="card-title">Success card title</h5>
+                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eu sem tempor, varius quam at.</p>
+            </div>
+        </div>
+        
+    </div>
+</div> -->
+    
+    
 
     <div class="responsive-table">
            
@@ -40,9 +143,10 @@
                     <th>EntryNo</th>
                     <th>Gender</th>
                     <th>Disease</th>
-                    <th>status</th>
                     <th>Arrival time</th>
-                    <th>edit</th>
+                    <th>status</th>
+                    <th>Request Patient</th>
+                    <th>Release Patient</th>
                     
                     
                 </tr>
@@ -56,15 +160,15 @@
                     <td><%=item.EnteryNo%></td>
                     <td><%=item.gender%></td>
                     <td><%=item.subject%></td>
-                    <td><%=item.status%></td>
                     <td><%-item.ArrivalTime%></td>
+                    <td><%=item.status%></td>
                 
                     <!-- <td> <a href="javascript:void(0)",data-item-id='<%=item._id%>' class="editlink"  onclick='return confirm("You are going to delete this record. Continue?")' >edit</a> </td>  -->
 
                     <!-- <td> <a href="/users/message", onclick='return confirm("You are going to delete this record. Continue?")' >edit</a> </td>   -->
 
-                     <td> <a href="/users/message?id=<%=item._id%>", onclick='return confirm("You are going to delete this record. Continue?")' >edit</a> </td>
-                     <td> <a href="/users/finish?id=<%=item._id%>", onclick='return confirm("You are going to delete this record. Continue?")' >finish</a> </td>
+                     <td> <a href="/users/message?id=<%=item._id%>", onclick='return confirm("Do you wish to attend this patient. Continue?")' >Request Patient</a> </td>
+                     <td> <a href="/users/finish?id=<%=item._id%>", onclick='return confirm("Do you wish to release this patient?. Continue?")' >finish</a> </td>
 
 
                     <!-- a(href='/delete?id=#{item["_id"]}', onclick='return confirm("You are going to delete this record. Continue?")') Delete -->
@@ -76,9 +180,9 @@
             <%})%>
         </table>
     </div>
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script> -->
 </body>
 </html>
 
