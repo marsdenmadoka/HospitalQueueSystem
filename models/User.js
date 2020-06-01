@@ -62,8 +62,7 @@ subject: {
 type:String,
   },
   ArrivalTime: {
-    type: Date,
-    default: Date.now()
+    type: String,
   }
 
 });
