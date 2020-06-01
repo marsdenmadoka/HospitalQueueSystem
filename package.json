@@ -19,6 +19,7 @@
     "express-session": "^1.17.1",
     "express-validator": "^6.5.0",
     "http-errors": "~1.6.3",
+    "mongodb": "^3.5.8",
     "mongoose": "^5.9.15",
     "morgan": "~1.9.1",
     "nexmo": "^2.6.0",

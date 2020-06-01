@@ -1,12 +1,13 @@
 var express = require('express');
 var router = express.Router();
-const mongoose = require('mongoose');
+var mongoose = require('mongoose');
+// var MongoClient = require('mongodb').MongoClient;
 
 
 require('../models/User');
 var InsertRecord=mongoose.model('InsertRecord')
 
-mongoose.connect('mongodb://localhost:27017/myqueue'); 
+mongoose.connect('mongodb://localhost:27017/myqueue',{useNewUrlParser: true,useCreateIndex:true,useUnifiedTopology: true}); 
 var db=mongoose.connection; 
 db.on('error', console.log.bind(console, "connection error")); 
 db.once('open', function(callback){ 
@@ -35,7 +36,7 @@ router.get('/index', function(req, res, next) {
 
 
 router.get('/patientdetails',function(req,res,next){
-  //fetching data to from db to display iy in our table doctors.ejs
+  //fetching data to from db to display iy in our table doctors.ejs   InsertRecord
 data='';
 
   db.collection("patientdetails").find({}).toArray(function(err,docs){
@@ -47,8 +48,41 @@ data='';
   })
 });
 
+// router.get('/patientdetails',async (req, res) => {
+
+// data=' ';
+// return new Promise(function(resolve, reject) {
+//   db.collection("patientdetails").find({}).toArray(function(err,docs){
+
+//     if(err){
+//      return reject(err)
+//     }else{
+//     return resolve(res.render('doctors',{data:docs}))
+//     // res.render('doctors',{data:docs})
+//     }
+//    })
+  
+// })
+ 
+// }
+// );
+
+
+
+
+
+
+
+
+
+
+
+
+
 router.get('/DoctorLog',function(req,res,next){
+
   res.render('DoctorsLogin',{title:"Admin"})
+  
 })
 
 module.exports = router;

@@ -56,6 +56,14 @@ txtPhone: {
 },
 subject: {
   type: String,
+  },
+
+  status:{
+type:String,
+  },
+  ArrivalTime: {
+    type: Date,
+    default: Date.now()
   }
 
 });

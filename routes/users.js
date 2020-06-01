@@ -4,7 +4,7 @@ var bodyParser=require("body-parser");
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 var flash = require('connect-flash');
-const { check, validationResult} = require("express-validator/check");
+const { check, validationResult} = require("express-validator");
 const africastalking = require('africastalking');
 
 // Init africastalking
@@ -30,7 +30,7 @@ const nexmo = new Nexmo({
 
 
 
-mongoose.connect('mongodb://localhost:27017/myqueue'); 
+mongoose.connect('mongodb://localhost:27017/myqueue',{useNewUrlParser: true,useCreateIndex:true,useUnifiedTopology: true }); 
 var db=mongoose.connection; 
 db.on('error', console.log.bind(console, "connection error")); 
 db.once('open', function(callback){ 
@@ -152,6 +152,15 @@ async (req, res) => {
           errors: errors.array()
       });
   }
+  let status="not attended";
+  
+ let Arrival=Date.now();
+  let date_ob = new Date(Arrival);
+  let time=date_ob.getTime();
+  let date = date_ob.getDate();
+  let month = date_ob.getMonth() + 1;
+  let year = date_ob.getFullYear();
+let  ArrivalTime =year + "-" + month + "-" + date + time
 
   const {
       firstname,
@@ -172,7 +181,9 @@ async (req, res) => {
     gender,
     txtEmail,
     txtPhone,
-    subject
+    subject,
+    status,
+    ArrivalTime
 });
 
 await db.collection('patientdetails').insertOne(userdetails,function(err, collection){ 
@@ -188,30 +199,6 @@ res.status(500).send("Error in Saving");
 }
 );
 
-// const config = {
-//   number:'254703674938'
-// }
-
-
-
-router.get('/message',function(res,req){ 
-  const from = '254703674938';
-  const to = '254703674695';
-  const text = 'A text message sent using the Nexmo SMS API'
-  
-  nexmo.message.sendSms(from, to, text, (err, responseData) => {
-      if (err) {
-          console.log(err);
-      } else {
-          if(responseData.messages[0]['status'] === "0") {
-              console.log("Message sent successfully.");
-          } else {
-              console.log(`Message failed with error: ${responseData.messages[0]['error-text']}`);
-          }
-      }
-  })
-
-})
 
 /**creating a doctor*/
 
@@ -226,14 +213,13 @@ var doctor=new DoctorUser({
 });
 // bcrypt.genSalt(numSaltRounds, function(err, salt) {
 //   bcrypt.hash(doctor.Docpassword, salt, function(err, hash) {
-    
-
 //   });
 // })
-      db.collection('doctors').insertOne(doctor,function(err, collection){ 
-                 if (err) throw err; 
-           console.log("doctor created successfull");  
+ db.collection('doctors').insertOne(doctor,function(err, collection){ 
+     if (err) throw err; 
+  console.log("doctor created successfull");  
           }); 
+
 
 //doctor login
 router.post('/DoctorLogin',
@@ -277,18 +263,46 @@ res.redirect('/patientdetails')
 }
 );
 
+// const config = {
+//   number:'254703674938'
+// }
+var Tonumber=db.collection('patientdetails').aggregate({$project:{'txtPhone':1}})
 
 
+router.get('/message',function(res,req){ 
+  const from = '254703674938';
+  const to = Tonumber;
+  const text = 'A text message sent using the Nexmo SMS API'
+  
+  nexmo.message.sendSms(from, to, text, (err, responseData) => {
+      if (err) {
+          console.log(err);
+      } else {
+          if(responseData.messages[0]['status'] === "0") {
+              console.log("Message sent successfully.");
+          } else {
+              console.log(`Message failed with error: ${responseData.messages[0]['error-text']}`);
+          }
+      }
+  })
 
+})
 
+//use this asyn function here when you use callback function it wont work
+router.get('/finish',
+async (req, res) => {
+  await db.collection('patientdetails').findOneAndUpdate(
+    {"status":"not attended"},{$set: {"status": 'Attetended'}},
+    function(err, collection){ 
+    if (err) throw err; 
+console.log("Record inserted Successfully");  
+}); 
+    
+return res.redirect('/patientdetails');
+}
+);
 
-
-
-
-
-
-
-
+   
 
 
 
@@ -304,7 +318,8 @@ router.get('/delete', function(req, res, next) {
   var id = req.query.id;
  
   MongoClient.connect(dburl, function(err, db) {
-    if(err) { throw err;  }
+    if(err) { throw err;  
+    }
     db.collection('products', function(err, products) {
       products.deleteOne({_id: new mongodb.ObjectID(id)});
       if (err){

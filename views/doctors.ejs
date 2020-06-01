@@ -40,8 +40,9 @@
                     <th>EntryNo</th>
                     <th>Gender</th>
                     <th>Disease</th>
+                    <th>status</th>
+                    <th>Arrival time</th>
                     <th>edit</th>
-                    
                     
                     
                 </tr>
@@ -55,11 +56,16 @@
                     <td><%=item.EnteryNo%></td>
                     <td><%=item.gender%></td>
                     <td><%=item.subject%></td>
+                    <td><%=item.status%></td>
+                    <td><%-item.ArrivalTime%></td>
+                
                     <!-- <td> <a href="javascript:void(0)",data-item-id='<%=item._id%>' class="editlink"  onclick='return confirm("You are going to delete this record. Continue?")' >edit</a> </td>  -->
 
-                    <td> <a href="/users/message", onclick='return confirm("You are going to delete this record. Continue?")' >edit</a> </td>  
+                    <!-- <td> <a href="/users/message", onclick='return confirm("You are going to delete this record. Continue?")' >edit</a> </td>   -->
 
-                    <!-- <td> <a href="/delete?id=<%=item._id%>", onclick='return confirm("You are going to delete this record. Continue?")' >edit</a> </td>   -->
+                     <td> <a href="/users/message?id=<%=item._id%>", onclick='return confirm("You are going to delete this record. Continue?")' >edit</a> </td>
+                     <td> <a href="/users/finish?id=<%=item._id%>", onclick='return confirm("You are going to delete this record. Continue?")' >finish</a> </td>
+
 
                     <!-- a(href='/delete?id=#{item["_id"]}', onclick='return confirm("You are going to delete this record. Continue?")') Delete -->
 
