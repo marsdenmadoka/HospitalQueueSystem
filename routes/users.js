@@ -200,13 +200,13 @@ res.status(500).send("Error in Saving");
 
 /**creating a doctor*/
 
-// var Docname='admin';
-// var Docpassword='admin';
+var Docname='admin';
+var Docpassword='admin';
 //var numSaltRounds = 10;
 
 var doctor=new DoctorUser({
-  Docname: 'admin',
-  Docpassword: 'admin'
+  Docname: Docname,
+  Docpassword: Docpassword
   
 });
 // bcrypt.genSalt(numSaltRounds, function(err, salt) {
@@ -304,6 +304,23 @@ return res.redirect('/patientdetails');
 );
 
   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 router.get('/delete', function(req, res, next) {
  //will use this to the href/delete in our doctors.ejsfiles
   var id = req.query.id;
