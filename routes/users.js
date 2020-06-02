@@ -249,7 +249,8 @@ async (req, res) => {
    return res.status(400).json({
      message:"incorrect password"
    })
-   
+  
+
 res.redirect('/patientdetails')
    
   } catch (e) {
@@ -260,6 +261,8 @@ res.redirect('/patientdetails')
   }
 }
 );
+
+
 
 // const config = {
 //   number:'254703674938'
@@ -300,17 +303,7 @@ return res.redirect('/patientdetails');
 }
 );
 
-   
-
-
-
-
-
-
-
-
-
-
+  
 router.get('/delete', function(req, res, next) {
  //will use this to the href/delete in our doctors.ejsfiles
   var id = req.query.id;

@@ -52,6 +52,19 @@ data='';
   })
 });
 
+
+
+
+
+// var Count=router.get('/waitingpatient',
+// async(req,res)=>{
+// await db.collection('patientdetails').count(
+//   {status : "not attended"},
+//   function(err,collection){
+//     if(err)throw err;
+//   });
+// });
+
 router.get('/DoctorLog',function(req,res,next){
 
   res.render('DoctorsLogin',{title:"Admin"})

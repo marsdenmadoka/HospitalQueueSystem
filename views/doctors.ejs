@@ -9,8 +9,12 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-            <style>
-
+           
+           
+           <style>
+body {
+    background-color: #ac467e;
+}
               table {
                     width: 50%;
                     border-collapse: collapse;
@@ -59,7 +63,10 @@
   text-align: center;
   background-color: #f1f1f1;
 }
-
+.card-text{
+    text-align: center;
+    font-size: 30px;
+}
 /* Responsive columns - one column layout (vertical) on small screens */
 @media screen and (max-width: 600px) {
   .column {
@@ -81,55 +88,25 @@
         <div class="column">
               <div class="card  text-white bg-danger mb-3">
               <h5 class="card-title">WAITING PATIENTS</h5>
-              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eu sem tempor, varius quam at.</p>
+              <p class="card-text"> 1 </p>
               </div>
         </div>
 
         <div class="column">
             <div class="card text-white bg-primary mb-3">
             <h5 class="card-title">ATTENDED PATIENT</h5>
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eu sem tempor, varius quam at.</p>
+            <p class="card-text">2</p>
              </div>
        </div>
 
         <div class="column">
-                <div class="card text-white bg-secondary mb-3">
+                <div class="card  text-white bg-success mb-3">
                     <h5 class="card-title">TOTAL PATIENTS</h5>
-                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eu sem tempor, varius quam at.</p>
+                    <p class="card-text">3</p>
                 </div>
        </div>
 
       </div> 
-
-
-
-<!-- <div class="col-md-6">
-    <div class="bs-example">
-        <div class="card text-white bg-primary mb-3" style="width: 20rem;">
-            <div class="card-body">
-                <h5 class="card-title">Primary card title</h5>
-                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eu sem tempor, varius quam at.</p>
-            </div>
-        </div>
-
-        <div class="card text-white bg-secondary mb-3" style="width: 20rem;">
-            <div class="card-body">
-                <h5 class="card-title">Secondary card title</h5>
-                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eu sem tempor, varius quam at.</p>
-            </div>
-        </div>
-        
-        <div class="card text-white bg-success mb-3" style="width: 20rem;">
-            <div class="card-body">
-                <h5 class="card-title">Success card title</h5>
-                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eu sem tempor, varius quam at.</p>
-            </div>
-        </div>
-        
-    </div>
-</div> -->
-    
-    
 
     <div class="responsive-table">
            
@@ -168,7 +145,7 @@
                     <!-- <td> <a href="/users/message", onclick='return confirm("You are going to delete this record. Continue?")' >edit</a> </td>   -->
 
                      <td> <a href="/users/message?id=<%=item._id%>", onclick='return confirm("Do you wish to attend this patient. Continue?")' >Request Patient</a> </td>
-                     <td> <a href="/users/finish?id=<%=item._id%>", onclick='return confirm("Do you wish to release this patient?. Continue?")' >finish</a> </td>
+                     <td> <a href="/users/finish?id=<%=item._id%>", onclick='return confirm("Do you wish to release this patient?. Continue?")' >Release Patient</a> </td>
 
 
                     <!-- a(href='/delete?id=#{item["_id"]}', onclick='return confirm("You are going to delete this record. Continue?")') Delete -->
