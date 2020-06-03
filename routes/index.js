@@ -41,7 +41,6 @@ router.get('/home',function(req,res,next){
 router.get('/patientdetails',function(req,res,next){
   //fetching data to from db to display iy in our table doctors.ejs   InsertRecord
 data='';
-pdata='';
   db.collection("patientdetails").find({}).toArray(function(err,docs){
     if(err){
       console.log(err)
@@ -49,9 +48,20 @@ pdata='';
      db.collection('patientdetails').count(
                {status : "not attended"},
                function(err,counts){
-                 if(err)throw err;
-                 console.log(counts);
-                 res.render('doctors',{data:docs,counts})
+                 if(err){
+                   console.log(err)
+                 }else{
+                  console.log(counts);
+                  db.collection('patientdetails').count(
+                             {status : "Attetended"},
+                             function(err,attendcounts){
+                              if(err)throw err;
+                              console.log(attendcounts)
+                              res.render('doctors',{data:docs,counts,attendcounts})
+                          });
+                 }
+                
+                
             });
           
       
