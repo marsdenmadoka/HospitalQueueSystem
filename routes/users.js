@@ -8,12 +8,12 @@ const { check, validationResult} = require("express-validator");
 const africastalking = require('africastalking');
 
 // Init africastalking
-const AfricasTalking = new africastalking({
-  apiKey:'d8cc5bdfb8562bd6c69fdcf38a46b5c5e7218047a6d7039a306588aa932d7b3d',
-  username: 'sandbox'
-  }, {debug: true});
+// const AfricasTalking = new africastalking({
+//   apiKey:'d8cc5bdfb8562bd6c69fdcf38a46b5c5e7218047a6d7039a306588aa932d7b3d',
+//   username: 'sandbox'
+//   }, {debug: true});
 
-  const sms = AfricasTalking.SMS;
+//   const sms = AfricasTalking.SMS;
 
 require('../models/User');
 var User = mongoose.model('User');/*fetching the schema from model*/
@@ -152,9 +152,9 @@ async (req, res) => {
           errors: errors.array()
       });
   }
+
   let status="not attended";
   
-
   var today = new Date();
   var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
   var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();

@@ -27,6 +27,20 @@ body {
                     border: 5px solid #ee0505;
                     white-space: nowrap; /* to prevent text wrapping */
                 }
+                td a { /*link decoration */
+                    text-decoration: underline;
+                    font-weight: bold;
+                    color: darkgreen;
+                    background-color: #1ebba3;
+                    display: inline-block;
+                   border: 1px solid #099983;
+ 
+                }
+               td a:hover, a:active {
+             background-color: #9c6ae1;
+             border-color: #7443b6;
+              }
+
                 .responsive-table {
                     overflow-x: auto;
                 }
@@ -39,7 +53,7 @@ body {
         color: darkgreen;
     }
     tbody tr:nth-child(odd) {
-    background-color: #f2f2f2;
+    background-color: #f0c8c8;
 }
 
 .column {

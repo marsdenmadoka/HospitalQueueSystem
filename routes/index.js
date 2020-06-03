@@ -13,9 +13,6 @@ db.on('error', console.log.bind(console, "connection error"));
 db.once('open', function(callback){ 
     console.log("connection succeeded"); 
 }) 
-  
-
-
 
 
 /* GET home page. */
@@ -44,7 +41,7 @@ res.render('DoctorsLogin',{title:"Admin"})
 
 
 router.get('/patientdetails',function(req,res,next){
-  //fetching data to from db to display iy in our table doctors.ejs   InsertRecord
+  //fetching data to from db to display it in our table doctors.ejs   InsertRecord
 data='';
   db.collection("patientdetails").find({}).toArray(function(err,docs){
     if(err){
