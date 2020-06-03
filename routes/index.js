@@ -48,10 +48,10 @@ pdata='';
     }else{
      db.collection('patientdetails').count(
                {status : "not attended"},
-               function(err,cols){
+               function(err,counts){
                  if(err)throw err;
-                 console.log(cols);
-                 res.render('doctors',{data:docs,cols})
+                 console.log(counts);
+                 res.render('doctors',{data:docs,counts})
             });
           
       
