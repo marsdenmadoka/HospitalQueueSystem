@@ -19,24 +19,29 @@ db.once('open', function(callback){
 
 
 /* GET home page. */
-
-
 router.get('/', function(req, res, next) {
   res.render('Login', { title: 'Express' });
 });
 
+/* GET Register page. */
 router.get('/register', function(req, res, next) {
   res.render('Register', { title: 'Express' });
 });
 
-
+/* GET index page. */
 router.get('/index', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
-router.get('/home',function(req,res,next){
-  res.render('homepage',{title:"home" });
-});
+/* GET DoctorsLoginpage. */
+router.get('/DoctorLog',function(req,res,next){
+res.render('DoctorsLogin',{title:"Admin"})
+  });
+
+  // router.get('/home',function(req,res,next){
+  //   res.render('homepage',{title:"home" });
+  // });
+
 
 router.get('/patientdetails',function(req,res,next){
   //fetching data to from db to display iy in our table doctors.ejs   InsertRecord
@@ -55,53 +60,27 @@ data='';
                   db.collection('patientdetails').count(
                              {status : "Attetended"},
                              function(err,attendcounts){
-                              if(err)throw err;
-                              console.log(attendcounts)
-                              res.render('doctors',{data:docs,counts,attendcounts})
-                          });
-                 }
-                
-                
-            });
-          
-      
-    }
-   
-  })
-});
+                              if(err){
+                                console.log(err)
+                              }else{
+                                console.log(attendcounts)
+                                db.collection('patientdetails').count(
+                                            function(err,allcounts){
+                                           if(err)throw err;
+                                           console.log(allcounts)
+                                res.render('doctors',{data:docs,counts,attendcounts,allcounts})
+                                      });
+                                     }
+                                    });
+                                   }
+                                  });
+                                }
+                               })
+  });
 
 
-// function getAnalytics(){
-
-//  let waitingpatient = db.collection('patientdetails').count(
-//       {status : "not attended"},
-//       function(err,collection){
-//         if(err)throw err;
-//       });
-
-//       let attetendpatient=db.collection('patientdetails').count(
-//         {status : "attended"},
-//         function(err,collection){
-//           if(err)throw err;
-//         });
-
-//         let Totalpatient=db.collection('patientdetails').count(
-//           function(err,collection){
-//       if(err)throw err;
-//           });
-//     }
 
 
-// var Count=router.get('/waitingpatient',
-// async(req,res)=>{
-//
-// });
-
-router.get('/DoctorLog',function(req,res,next){
-
-  res.render('DoctorsLogin',{title:"Admin"})
-  
-})
 
 
 
