@@ -4,6 +4,8 @@ var bodyParser=require("body-parser");
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 var flash = require('connect-flash');
+const passport = require ('passport');
+const LocalStrategy = require ('passport-local').Strategy;
 const { check, validationResult} = require("express-validator");
 const africastalking = require('africastalking');
 
@@ -37,12 +39,12 @@ db.once('open', function(callback){
     console.log("connection succeeded"); 
 }) 
   
-var app=express()   
-app.use(bodyParser.json()); 
-app.use(express.static('public')); 
-app.use(bodyParser.urlencoded({ 
-    extended: true
-})); 
+// var app=express()   
+// app.use(bodyParser.json()); 
+// app.use(express.static('public')); 
+// app.use(bodyParser.urlencoded({ 
+//     extended: true
+// })); 
 
   /*recieving Register and processing it */
   router.post('/RecieveRegister',
@@ -123,6 +125,7 @@ async (req, res) => {
       email
     });
     if (!user)
+    // req.flash('success_msg', 'User does not exist');
       return res.status(400).json({
         message: "User Not Exist"
       });
@@ -263,32 +266,6 @@ res.redirect('/patientdetails')
 );
 
 
-
-// const config = {
-//   number:'254703674938'
-// }
-var Tonumber=db.collection('patientdetails').aggregate({$project:{'txtPhone':1}})
-
-
-router.get('/message',function(res,req){ 
-  const from = '254703674938';
-  const to = Tonumber;
-  const text = 'A text message sent using the Nexmo SMS API'
-  
-  nexmo.message.sendSms(from, to, text, (err, responseData) => {
-      if (err) {
-          console.log(err);
-      } else {
-          if(responseData.messages[0]['status'] === "0") {
-              console.log("Message sent successfully.");
-          } else {
-              console.log(`Message failed with error: ${responseData.messages[0]['error-text']}`);
-          }
-      }
-  })
-
-})
-
 //use this asyn function here when you use callback function it wont work
 router.get('/finish',
 async (req, res) => {
@@ -303,13 +280,31 @@ return res.redirect('/patientdetails');
 }
 );
 
-  
+ 
 
 
+router.get('/message',
+async(req,res)=>{
+var phone = req.query.txtPhone;
+console.log(phone);
 
+  const from = '254703674938';
+  const to = phone;
+  const text = 'A text message sent using the Nexmo SMS API'
+  nexmo.message.sendSms(from, to, text, (err, responseData) => {
+      if (err) {
+          console.log(err);
+      } else {
+          if(responseData.messages[0]['status'] === "0") {
+            console.log(phone);
+              console.log("Message sent successfully.");
+          } else {
+              console.log(`Message failed with error: ${responseData.messages[0]['error-text']}`);
+          }
+      }
+  })
 
-
-
+});
 
 
 

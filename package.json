@@ -16,6 +16,7 @@
     "debug": "~2.6.9",
     "ejs": "~2.6.1",
     "express": "^4.16.4",
+    "express-messages": "^1.0.1",
     "express-session": "^1.17.1",
     "express-validator": "^6.5.0",
     "http-errors": "~1.6.3",
@@ -23,6 +24,7 @@
     "mongoose": "^5.9.15",
     "morgan": "~1.9.1",
     "nexmo": "^2.6.0",
-    "passport": "^0.4.1"
+    "passport": "^0.4.1",
+    "passport-local": "^1.0.0"
   }
 }
