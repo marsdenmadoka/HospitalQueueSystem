@@ -3,7 +3,6 @@ var router = express.Router();
 var bodyParser=require("body-parser"); 
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
-var flash = require('connect-flash');
 const passport = require ('passport');
 const LocalStrategy = require ('passport-local').Strategy;
 const { check, validationResult} = require("express-validator");
