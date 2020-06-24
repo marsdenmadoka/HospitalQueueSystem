@@ -39,11 +39,11 @@ db.once('open', function(callback){
 }) 
   
 // var app=express()   
-// app.use(bodyParser.json()); 
+// app.usje(bodyParser.json()); 
 // app.use(express.static('public')); 
 // app.use(bodyParser.urlencoded({ 
 //     extended: true
-// })); 
+// })); ;;
 
   /*recieving Register and processing it */
   router.post('/RecieveRegister',

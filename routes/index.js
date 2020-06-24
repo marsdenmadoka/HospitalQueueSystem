@@ -35,7 +35,7 @@ router.get('/DoctorLog',function(req,res,next){
 res.render('DoctorsLogin',{title:"Admin"})
   });
 
-  // router.get('/home',function(req,res,next){
+  // router.get('/home',function(req,nres,next){
   //   res.render('homepage',{title:"home" });
   // });
 
