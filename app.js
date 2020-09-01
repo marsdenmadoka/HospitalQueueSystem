@@ -11,7 +11,15 @@ const { check, validationResult} = require('express-validator');
 const LocalStrategy = require('passport-local').Strategy;
 const bcrypt = require('bcrypt');//hashing our password
 
-var app=express()   
+// const  {graphqlHTTP} =require('express-graphql');
+// const schema=require('./models/schema');
+
+var app=express() 
+
+// app.use('/graphql',graphqlHTTP({
+//   schema,
+//   graphiql:true
+// })); 
 app.use(bodyParser.json()); 
 app.use(express.static('public')); 
 app.use(bodyParser.urlencoded({ 
@@ -67,7 +75,6 @@ app.use(function (req, res, next) {
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var useRouter=require('./models/User');
-var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
