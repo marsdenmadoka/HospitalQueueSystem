@@ -279,7 +279,35 @@ return res.redirect('/patientdetails');
 }
 );
 
+
+
+
+// router.get('/delete', function(req, res, next) {
+//  //will use this to the href/delete in our doctors.ejsfiles
+//   //var id = req.query.id;
  
+//     db.collection('patientdetails', function(err, patientdetails) {
+//       patientdetails.deleteOne({_id: new mongodb.ObjectID(id)});
+//       if (err){
+  
+//        throw err;
+   
+//       }else{
+//           res.redirect('/patientdetails');
+    
+//        }
+//     });
+  
+// })
+
+
+
+// router.get('/delete',
+// async(req,res)=>{
+//   await db.collection('patientdetails').findOneAndDelete({})
+//   if (err) throw err; 
+// console.log("Record deleted Successfully");  
+// }); 
 
 
 router.get('/message',
@@ -289,7 +317,7 @@ console.log(phone);
 
   const from = '254703674938';
   const to = phone;
-  const text = 'A text message sent using the Nexmo SMS API'
+  const text = "hello dear customer please enter the doctors room"
   nexmo.message.sendSms(from, to, text, (err, responseData) => {
       if (err) {
           console.log(err);
@@ -297,6 +325,7 @@ console.log(phone);
           if(responseData.messages[0]['status'] === "0") {
             console.log(phone);
               console.log("Message sent successfully.");
+              return res.redirect('/patientdetails');
           } else {
               console.log(`Message failed with error: ${responseData.messages[0]['error-text']}`);
           }

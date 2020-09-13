@@ -139,6 +139,7 @@ body {
                     <th>status</th>
                     <th>Request Patient</th>
                     <th>Release Patient</th>
+                    <!-- <th>Delete Record</th> -->
                     
                     
                 </tr>
@@ -159,8 +160,9 @@ body {
 
                     <!-- <td> <a href="/users/message", onclick='return confirm("You are going to delete this record. Continue?")' >edit</a> </td>   -->
 
-                     <td> <a href="/users/message?txtPhone=<%=item.txtPhone%>", onclick='return confirm("Do you wish to attend this patient. Continue?")' >Request Patient</a> </td>
+                     <td> <a href="/users/message?txtPhone=<%=item.txtPhone%> firstname=<%=item.firstname%>, onclick='return confirm("Do you wish to attend this patient. Continue?")' >Request Patient</a> </td>
                      <td> <a href="/users/finish?id=<%=item._id%>", onclick='return confirm("Do you wish to release this patient?. Continue?")' >Release Patient</a> </td>
+                     <!-- <td> <a href="/users/delete?id=<%=item._id%>", onclick='return confirm("Do you wish to delate this record?. Continue?")' >Delete</a> </td> -->
 
 
                     <!-- a(href='/delete?id=#{item["_id"]}', onclick='return confirm("You are going to delete this record. Continue?")') Delete -->
