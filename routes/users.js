@@ -31,7 +31,7 @@ const nexmo = new Nexmo({
 
 
 
-mongoose.connect("mongodb+srv://username:password@cluster0-ewzaf.mongodb.net/QueueSystem?retryWrites=true&w=majority",{useNewUrlParser: true,useCreateIndex:true,useUnifiedTopology: true }); 
+mongoose.connect("mongodb+srv://marsden:madoka98@cluster0-ewzaf.mongodb.net/QueueSystem?retryWrites=true&w=majority",{useNewUrlParser: true,useCreateIndex:true,useUnifiedTopology: true }); 
 var db=mongoose.connection; 
 db.on('error', console.log.bind(console, "connection error")); 
 db.once('open', function(callback){ 
@@ -269,7 +269,7 @@ res.redirect('/patientdetails')
 router.get('/finish',
 async (req, res) => {
   await db.collection('patientdetails').findOneAndUpdate(
-    {"status":"not attended"},{$set: {"status": 'Attetended'}},
+    {"status":"not attended"},{$set: {"status": 'Attended'}},
     function(err, collection){ 
     if (err) throw err; 
 console.log("Record inserted Successfully");  
@@ -315,47 +315,47 @@ console.log(phone);
 
 
 
-router.get('/delete', function(req, res, next) {
- //will use this to the href/delete in our doctors.ejsfiles
-  var id = req.query.id;
+// router.get('/delete', function(req, res, next) {
+//  //will use this to the href/delete in our doctors.ejsfiles
+//   var id = req.query.id;
  
-  MongoClient.connect(dburl, function(err, db) {
-    if(err) { throw err;  
-    }
-    db.collection('products', function(err, products) {
-      products.deleteOne({_id: new mongodb.ObjectID(id)});
-      if (err){
+//   MongoClient.connect(dburl, function(err, db) {
+//     if(err) { throw err;  
+//     }
+//     db.collection('products', function(err, products) {
+//       products.deleteOne({_id: new mongodb.ObjectID(id)});
+//       if (err){
   
-       throw err;
+//        throw err;
    
-      }else{
+//       }else{
     
-         db.close();
-          res.redirect('/');
+//          db.close();
+//           res.redirect('/');
     
-       }
-    });
-  });
-});
+//        }
+//     });
+//   });
+// });
 
-router.post('/edit', function(req, res, next){ 
-  MongoClient.connect(dburl, function(err, db) {
-    if(err) { throw err; } 
+// router.post('/edit', function(req, res, next){ 
+//   MongoClient.connect(dburl, function(err, db) {
+//     if(err) { throw err; } 
     
-    var collection   = db.collection('products'); 
-    var product_name = req.body.product_name;
-    var price               = req.body.price;
-    var category     = req.body.category;
-    collection.update({'_id':new mongodb.ObjectID(req.body.id)}, 
-    { $set: {'product_name': product_name, 'price': price, 'category': category } }, function(err, result) { 
-      if(err) { throw err; } 
+//     var collection   = db.collection('products'); 
+//     var product_name = req.body.product_name;
+//     var price               = req.body.price;
+//     var category     = req.body.category;
+//     collection.update({'_id':new mongodb.ObjectID(req.body.id)}, 
+//     { $set: {'product_name': product_name, 'price': price, 'category': category } }, function(err, result) { 
+//       if(err) { throw err; } 
       
-      db.close(); 
+//       db.close(); 
       
-      res.redirect('/'); 
-    }); 
-  });
-});
+//       res.redirect('/'); 
+//     }); 
+//   });
+// });
 
 
   
