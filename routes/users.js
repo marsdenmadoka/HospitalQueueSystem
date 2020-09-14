@@ -317,7 +317,7 @@ console.log(phone);
 
   const from = '254703674938';
   const to = phone;
-  const text = "hello dear customer please enter the doctors room"
+  const text = "hello dear patient please enter the doctors room"
   nexmo.message.sendSms(from, to, text, (err, responseData) => {
       if (err) {
           console.log(err);
