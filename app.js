@@ -9,6 +9,7 @@ const passport=require('passport');
 var bodyParser=require("body-parser"); 
 const { check, validationResult} = require('express-validator');
 const LocalStrategy = require('passport-local').Strategy;
+
 //const bcrypt = require('bcrypt');//hashing our password
 
 // const  {graphqlHTTP} =require('express-graphql');
