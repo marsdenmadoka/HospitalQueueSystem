@@ -113,13 +113,14 @@ body {
             <p class="card-text"><%=attendcounts %></p>
              </div>
        </div>
-
+       
         <div class="column">
                 <div class="card  text-white bg-success mb-3">
                     <h5 class="card-title">TOTAL PATIENTS</h5>
                     <p class="card-text"><%=allcounts %></p>
                 </div>
        </div>
+    
 
       </div> 
 
@@ -157,24 +158,20 @@ body {
                     <td><%=item.status%></td>
                 
                     <!-- <td> <a href="javascript:void(0)",data-item-id='<%=item._id%>' class="editlink"  onclick='return confirm("You are going to delete this record. Continue?")' >edit</a> </td>  -->
-
-                    <!-- <td> <a href="/users/message", onclick='return confirm("You are going to delete this record. Continue?")' >edit</a> </td>   -->
-
+                   <!-- <td> <a href="/users/message", onclick='return confirm("You are going to delete this record. Continue?")' >edit</a> </td>   -->
                      <td> <a href="/users/message?txtPhone=<%=item.txtPhone%>", onclick='return confirm("Do you wish to attend this patient. Continue?")' >Request Patient</a> </td>
                      <td> <a href="/users/finish?id=<%=item._id%>", onclick='return confirm("Do you wish to release this patient?. Continue?")' >Release Patient</a> </td>
                      <!-- <td> <a href="/users/delete?id=<%=item._id%>", onclick='return confirm("Do you wish to delate this record?. Continue?")' >Delete</a> </td> -->
-
-
-                    <!-- a(href='/delete?id=#{item["_id"]}', onclick='return confirm("You are going to delete this record. Continue?")') Delete -->
-
-        
+                     <!-- a(href='/delete?id=#{item["_id"]}', onclick='return confirm("You are going to delete this record. Continue?")') Delete -->
                    
                 </tr>
             </tbody>
             <%})%>
         </table>
     </div>
-    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!--
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script> -->
 </body>
